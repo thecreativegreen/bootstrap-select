@@ -80,7 +80,7 @@
     this.$button = null;
     this.$menu = null;
     this.$lis = null;
-    this.scrollable = this.$element.hasClass('scrollable-menu');
+    this.scrollable = this.$element.hasClass('scrollable-menu');    
     this.options = options;
 
     // If we have no title yet, try to pull it from the html title attribute (jQuery doesnt' pick it up as it's not a
@@ -187,7 +187,7 @@
       this.$menu.data('this', this);
       this.$newElement.data('this', this);
       if (this.options.mobile) this.mobile();
-      if (this.scrollable) this.$element.removeClass('scrollable');
+      if (this.scrollable) this.$element.removeClass('scrollable-menu');
     },
 
     createDropdown: function () {
