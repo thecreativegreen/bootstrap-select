@@ -80,8 +80,14 @@
     this.$button = null;
     this.$menu = null;
     this.$lis = null;
-    this.scrollable = this.$element.hasClass('scrollable-menu');    
+    
     this.options = options;
+
+    this.scrollable = this.$element.hasClass('scrollable-menu');
+    if (this.scrollable) {
+      this.$element.removeClass('scrollable-menu');
+    }
+    console.log('this.scrollable', this.scrollable)
 
     // If we have no title yet, try to pull it from the html title attribute (jQuery doesnt' pick it up as it's not a
     // data-attribute)
@@ -187,7 +193,7 @@
       this.$menu.data('this', this);
       this.$newElement.data('this', this);
       if (this.options.mobile) this.mobile();
-      if (this.scrollable) this.$element.removeClass('scrollable-menu');
+      
     },
 
     createDropdown: function () {
@@ -227,7 +233,7 @@
           header +
           searchbox +
           actionsbox +
-          '<ul class="dropdown-menu inner selectpicker ' + (this.scrollable ? '"scrollable-menu"' : '') + '" role="menu">' +
+          '<ul class="dropdown-menu inner selectpicker ' + (this.scrollable ? 'scrollable-menu' : '') + '" role="menu">' +
           '</ul>' +
           '</div>' +
           '</div>';
@@ -427,7 +433,7 @@
      */
     setStyle: function (style, status) {
       if (this.$element.attr('class')) {
-        this.$newElement.addClass(this.$element.attr('class').replace(/selectpicker|mobile-device|validate\[.*\]/gi, ''));
+        this.$newElement.addClass(this.$element.attr('class').replace(/selectpicker|scrollable-menu|mobile-device|validate\[.*\]/gi, ''));
       }
 
       var buttonClass = style ? style : this.options.style;
